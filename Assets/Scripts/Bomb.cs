@@ -4,6 +4,7 @@ using System.Collections;
 public class Bomb : MonoBehaviour
 {
 	public Transform[] componentAnchorPoints;
+	public Transform visualTransform;
 
 	// Use this for initialization
 	void Start()

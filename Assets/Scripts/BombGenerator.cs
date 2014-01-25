@@ -36,7 +36,7 @@ public class BombGenerator : MonoBehaviour
 				rand -= 1;
 			}
 			GameObject newComponent = GameObject.Instantiate(componentPrefabs[rand], anchorPoint.position, anchorPoint.rotation) as GameObject;
-			newComponent.transform.parent = newBomb.transform;
+			newComponent.transform.parent = bombScript.visualTransform;
 		}
 	}
 }
