@@ -11,6 +11,7 @@ public class SixenseHandController : SixenseObjectController
 {
 	protected Animator			m_animator = null;
 	protected float				m_fLastTriggerVal = 0.0f;
+	public PickupZone					m_pickupZone;
 	
 	protected override void Start() 
 	{
@@ -95,10 +96,12 @@ public class SixenseHandController : SixenseObjectController
 		
 		if ( fTriggerVal > 0.01f )
 		{
+			m_pickupZone.Grab();
 			m_animator.SetBool( "Fist", true );
 		}
 		else
 		{
+			m_pickupZone.Drop();
 			m_animator.SetBool( "Fist", false );
 		}
 		
