@@ -42,11 +42,11 @@ MonoBehaviour:
   - {fileID: 100010, guid: 4a2e12d27541e604d865357ebf3bc7cf, type: 2}
   solvableComponentPrefabs:
   - {fileID: 100002, guid: 134f1b9aa2193184c8609255ec19cec6, type: 2}
+  - {fileID: 100002, guid: 857b932e96426ad48a7fadaae993e27e, type: 2}
   unsolvableComponentPrefabs:
   - {fileID: 100002, guid: a9a82478bcaaca048a7f3fff0d92c583, type: 2}
   requiredComponentPrefabs:
   - {fileID: 100008, guid: c98734093ef494a4f91bfce77be8df50, type: 2}
-  requiredComponentPrefabs: []
   SerialNumberPrefab: {fileID: 100000, guid: b46e625f1f5a9e34fa743323f9caccad, type: 2}
   SerialNumberChance: 1
 --- !u!1001 &100100000

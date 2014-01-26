@@ -27,6 +27,15 @@ public class KeypadComponent : MonoBehaviour {
 	}
 	
 	public bool ButtonPushed(int index) {
+		KeypadButton pressedButton = buttons [index];
+		int solutionValue = solutionOrder.IndexOf (pressedButton.GetText ());
+		foreach(KeypadButton button in buttons) {
+			int otherSolVal = solutionOrder.IndexOf (button.GetText ());
+			if(!button.isPressed && otherSolVal < solutionValue) {
+				return false;
+			}
+		}
+
 		return true;
 	}
 	
@@ -34,10 +43,10 @@ public class KeypadComponent : MonoBehaviour {
 		List<string> solutionOrder = new List<string>(new string[]{"©","★","☆","ئ","ټ","Җ","Ω","Ѭ","Ѽ"});
 		SerialNumber sn = SceneManager.Instance.Bomb.Serial;
 		//Serial number starts with number
-		if (!char.IsLetter(sn.GetSerialString()[0]))
+		/*if (!char.IsLetter(sn.GetSerialString()[0]))
 		{
 			return new List<string>(new string[]{"Җ","Ѽ","★","©","ئ","☆","ټ","Ω","Ѭ"});
-		}
+		}*/
 		
 		foreach (KeypadButton button in buttons) {
 			if(button.GetText() == "Ѭ") {

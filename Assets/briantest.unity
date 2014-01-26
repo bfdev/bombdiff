@@ -2447,8 +2447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BombGenerator: {fileID: 11400000, guid: 9b4083d146dcfca4181c9b4986300e84, type: 2}
-  NumStrikesToLose: 0
-  SecondsToSolve: 0
+  NumStrikesToLose: 5
+  SecondsToSolve: 120
   Bomb: {fileID: 0}
 --- !u!4 &1893693180
 Transform:
