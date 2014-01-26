@@ -148,9 +148,11 @@ public class SixenseHandController : SixenseObjectController
 		}
 		Destroy (m_tool);
 		m_tool = HandTool.GetTool(m_toolNum);
-		m_tool.transform.position = m_handItemSpawn.transform.position;
-		m_tool.transform.parent = m_handItemSpawn.transform;
-		m_toolNum++;
+		if(m_tool) {
+			m_tool.transform.position = m_handItemSpawn.transform.position;
+			m_tool.transform.parent = m_handItemSpawn.transform;
+			m_toolNum++;
+		}
 	}
 }
 
