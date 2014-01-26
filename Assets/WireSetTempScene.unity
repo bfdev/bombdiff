@@ -216,51 +216,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!1 &1395655106
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 9b4083d146dcfca4181c9b4986300e84, type: 2}
-  m_PrefabInternal: {fileID: 1602731111}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1395655108}
-  - 114: {fileID: 1395655107}
-  m_Layer: 0
-  m_Name: BombGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1395655107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 9b4083d146dcfca4181c9b4986300e84,
-    type: 2}
-  m_PrefabInternal: {fileID: 1602731111}
-  m_GameObject: {fileID: 1395655106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bac0c9b3325628848826c470e03e181d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bombPrefabs:
-  - {fileID: 100010, guid: 4a2e12d27541e604d865357ebf3bc7cf, type: 2}
-  componentPrefabs:
-  - {fileID: 100002, guid: a9a82478bcaaca048a7f3fff0d92c583, type: 2}
-  - {fileID: 100002, guid: 134f1b9aa2193184c8609255ec19cec6, type: 2}
---- !u!4 &1395655108
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 9b4083d146dcfca4181c9b4986300e84, type: 2}
-  m_PrefabInternal: {fileID: 1602731111}
-  m_GameObject: {fileID: 1395655106}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
---- !u!1001 &1602731111
+--- !u!1001 &1328829887
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -300,3 +256,50 @@ Prefab:
   m_RootGameObject: {fileID: 1395655106}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1395655106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 9b4083d146dcfca4181c9b4986300e84, type: 2}
+  m_PrefabInternal: {fileID: 1328829887}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1395655108}
+  - 114: {fileID: 1395655107}
+  m_Layer: 0
+  m_Name: BombGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1395655107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 9b4083d146dcfca4181c9b4986300e84,
+    type: 2}
+  m_PrefabInternal: {fileID: 1328829887}
+  m_GameObject: {fileID: 1395655106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac0c9b3325628848826c470e03e181d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombPrefabs:
+  - {fileID: 100010, guid: 4a2e12d27541e604d865357ebf3bc7cf, type: 2}
+  solvableComponentPrefabs:
+  - {fileID: 100002, guid: 134f1b9aa2193184c8609255ec19cec6, type: 2}
+  unsolvableComponentPrefabs:
+  - {fileID: 100002, guid: a9a82478bcaaca048a7f3fff0d92c583, type: 2}
+  requiredComponentPrefabs:
+  - {fileID: 100008, guid: c98734093ef494a4f91bfce77be8df50, type: 2}
+--- !u!4 &1395655108
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 9b4083d146dcfca4181c9b4986300e84, type: 2}
+  m_PrefabInternal: {fileID: 1328829887}
+  m_GameObject: {fileID: 1395655106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}

@@ -73,9 +73,16 @@ public class BombGenerator : MonoBehaviour
 			if (newComponents.Length > 1)
 			{
 				GameObject[] smallerArray = new GameObject[newComponents.Length - 1];
+				int newComponentI = 0;
 				for (int i = 0; i < smallerArray.Length; i++)
 				{
-					smallerArray[i] = newComponents[i];
+					if (i == newComponentI && newComponents[i] == randomComponent)
+					{
+						// Skip this one, 'cause it's the one we just added
+						newComponentI++;
+					}
+					smallerArray[i] = newComponents[newComponentI];
+					newComponentI++;
 				}
 				newComponents = smallerArray;
 			}

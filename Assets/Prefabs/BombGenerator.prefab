@@ -44,7 +44,8 @@ MonoBehaviour:
   - {fileID: 100002, guid: 134f1b9aa2193184c8609255ec19cec6, type: 2}
   unsolvableComponentPrefabs:
   - {fileID: 100002, guid: a9a82478bcaaca048a7f3fff0d92c583, type: 2}
-  requiredComponentPrefabs: []
+  requiredComponentPrefabs:
+  - {fileID: 100008, guid: c98734093ef494a4f91bfce77be8df50, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
