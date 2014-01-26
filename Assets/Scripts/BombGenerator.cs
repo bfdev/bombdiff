@@ -29,7 +29,7 @@ public class BombGenerator : MonoBehaviour
 	public Bomb CreateBomb(int numStrikesToFail)
 	{
 		GameObject bombPrefab = randomGOFromArray(bombPrefabs);
-		GameObject newBomb = GameObject.Instantiate(bombPrefab, new Vector3(-0.03f, 0.9f, -0.42f), Quaternion.identity) as GameObject;
+		GameObject newBomb = GameObject.Instantiate(bombPrefab, new Vector3(0, 0.9f, 0.42f), Quaternion.identity) as GameObject;
 		Bomb bombScript = newBomb.GetComponent<Bomb>();
 
 		GameObject[] allComponents = new GameObject[solvableComponentPrefabs.Length + unsolvableComponentPrefabs.Length];
