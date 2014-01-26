@@ -35,12 +35,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d9b8af6d6bc15e49a3a838e3dd82c83, type: 3}
+  m_Script: {fileID: 11500000, guid: 95914ee3e73943e4bbb7e51371f71b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BombGenerator: {fileID: 11400000, guid: 9b4083d146dcfca4181c9b4986300e84, type: 2}
   NumStrikesToLose: 5
   SecondsToSolve: 300
+  NumComponentsToSolve: 3
   Bomb: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
