@@ -39,13 +39,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BombGenerator: {fileID: 11400000, guid: 9b4083d146dcfca4181c9b4986300e84, type: 2}
-  NumStrikesToLose: 5
+  NumStrikesToLose: 3
   SecondsToSolve: 300
   NumComponentsToSolve: 3
   radio: {fileID: 0}
   Bomb: {fileID: 0}
   Lightbulb: {fileID: 0}
   Victory: {fileID: 8300000, guid: 6e2e5692dd5b4d147ac34aca5b3ed238, type: 3}
+  BlankTexture: {fileID: 2800000, guid: e1f7942c926ba0246bf1523267ad1272, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
