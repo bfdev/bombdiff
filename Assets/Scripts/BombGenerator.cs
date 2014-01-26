@@ -31,7 +31,7 @@ public class BombGenerator : MonoBehaviour
 		foreach(Transform anchorPoint in bombScript.componentAnchorPoints)
 		{
 			rand = (int)(Random.value * componentPrefabs.Length);
-			if (rand == bombPrefabs.Length)
+			if (rand == componentPrefabs.Length)
 			{
 				rand -= 1;
 			}
