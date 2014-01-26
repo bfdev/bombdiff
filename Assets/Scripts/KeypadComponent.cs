@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public class KeypadComponent : MonoBehaviour {
 	public KeypadButton[] buttons;
 	string[] symbols = {"©","★","☆","ئ","ټ","Җ","Ω","Ѭ","Ѽ"};
-
+	List<string> solutionOrder;
+	
 	// Use this for initialization
 	void Start () {
 		List<string> symbolsClone = new List<string>(symbols);
@@ -17,14 +18,39 @@ public class KeypadComponent : MonoBehaviour {
 			button.buttonIndex = i;
 			symbolsClone.RemoveAt (rand);
 		}
+		solutionOrder = GetSolutionOrder ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
-
-	public void ButtonPushed(int index) {
 		
+	}
+	
+	public bool ButtonPushed(int index) {
+		return true;
+	}
+	
+	List<string> GetSolutionOrder() {
+		List<string> solutionOrder = new List<string>(new string[]{"©","★","☆","ئ","ټ","Җ","Ω","Ѭ","Ѽ"});
+		SerialNumber sn = SceneManager.Instance.Bomb.Serial;
+		//Serial number starts with number
+		if (!char.IsLetter(sn.GetSerialString()[0]))
+		{
+			return new List<string>(new string[]{"Җ","Ѽ","★","©","ئ","☆","ټ","Ω","Ѭ"});
+		}
+		
+		foreach (KeypadButton button in buttons) {
+			if(button.GetText() == "Ѭ") {
+				return new List<string>(new string[]{"Ѭ","Җ","©","Ѽ","★","Ω","ئ","☆","ټ"});
+			}
+		}
+		
+		foreach (KeypadButton button in buttons) {
+			if(button.GetText() == "Җ") {
+				return new List<string>(new string[]{"Ѽ","★","Ω","ئ","☆","Ѭ","Җ","©","ټ"});
+			}
+		}
+		
+		return solutionOrder;
 	}
 }
