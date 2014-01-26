@@ -30,7 +30,8 @@ public class SceneManager : MonoBehaviour
 		Bomb.GetTimer().text.renderer.enabled = false;
 		Bomb.GetTimer().light.enabled = false;
 		SetAllTextRenderers(false);
-
+		radio.PlayMusic();
+        
 		StartCoroutine(StartRound());
     }
 
@@ -44,7 +45,9 @@ public class SceneManager : MonoBehaviour
 
 	protected IEnumerator StartRound()
 	{
-		yield return new WaitForSeconds(5);
+		radio.GetComponent<RecordPlayer>().recordPlayerActive = true;
+
+        yield return new WaitForSeconds(5);
 		Bomb.GetTimer().text.renderer.enabled = true;
 		Bomb.GetTimer().light.enabled = true;
 		yield return new WaitForSeconds(5);

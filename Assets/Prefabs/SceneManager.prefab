@@ -42,6 +42,7 @@ MonoBehaviour:
   NumStrikesToLose: 5
   SecondsToSolve: 300
   NumComponentsToSolve: 3
+  radio: {fileID: 0}
   Bomb: {fileID: 0}
   Lightbulb: {fileID: 0}
 --- !u!1001 &100100000
