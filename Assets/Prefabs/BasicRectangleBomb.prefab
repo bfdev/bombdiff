@@ -247,7 +247,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.09726691, y: .0693455189, z: 1.2232703}
+  m_LocalPosition: {x: -2.18497086, y: -2.96690702, z: -.7015028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400014}
@@ -412,8 +412,7 @@ MonoBehaviour:
   StatusLights: []
   NumStrikesToLose: 0
   NumStrikes: 0
-  NumPassesToWin: 0
-  NumPasses: 0
+  detonator: {fileID: 11400000, guid: 2a6951ec14b27ed4da27d13818dbebd2, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

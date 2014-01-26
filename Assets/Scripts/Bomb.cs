@@ -19,6 +19,7 @@ public class Bomb : MonoBehaviour
 	protected int numPassesToWin;
 
 	protected bool hasDetonated;
+	public Detonator detonator;
 
 	// Use this for initialization
 	void Start()
@@ -39,6 +40,7 @@ public class Bomb : MonoBehaviour
 		if (NumStrikes == NumStrikesToLose - 1)
 		{
 			//game over man!
+			Detonate();
 		}
 		else
 		{
@@ -130,6 +132,7 @@ public class Bomb : MonoBehaviour
 	{
 		if (!hasDetonated)
 		{
+			detonator.Explode ();
 			Debug.Log("boom");
 			hasDetonated = true;
 		}
