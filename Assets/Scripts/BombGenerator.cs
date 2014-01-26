@@ -8,6 +8,12 @@ public class BombGenerator : MonoBehaviour
 	public GameObject[] unsolvableComponentPrefabs;
 	public GameObject[] requiredComponentPrefabs;
 
+	public GameObject SerialNumberPrefab;
+
+	public float SerialNumberChance = 0.5f;
+
+	protected System.Random rand = new System.Random();
+
 	// Use this for initialization
 	void Start()
 	{
@@ -68,6 +74,7 @@ public class BombGenerator : MonoBehaviour
 			GameObject randomComponent = randomGOFromArray(newComponents);
 			GameObject newComponent = GameObject.Instantiate(randomComponent, anchorPoint.position, anchorPoint.rotation) as GameObject;
 			newComponent.transform.parent = bombScript.visualTransform;
+			bombScript.BombComponents.Add(newComponent);
 
 			//remove this component from the newComponents now that it's added...
 			if (newComponents.Length > 1)
@@ -82,6 +89,19 @@ public class BombGenerator : MonoBehaviour
 			else
 			{
 				break; // we were going to be breaking anyway, but whatever
+			}
+		}
+
+
+		if (rand.NextDouble() < SerialNumberChance)
+		{
+			if (bombScript.SerialNumberAnchorPoints.Length > 0)
+			{
+				Transform serialAnchorPoint = bombScript.SerialNumberAnchorPoints[rand.Next(0, bombScript.SerialNumberAnchorPoints.Length)];
+				GameObject serialGO = GameObject.Instantiate(SerialNumberPrefab, 
+				                                             serialAnchorPoint.position, 
+				                                             serialAnchorPoint.rotation) as GameObject;
+				serialGO.transform.parent = bombScript.visualTransform;
 			}
 		}
 	}
