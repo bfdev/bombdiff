@@ -112,6 +112,15 @@ public class SceneManager : MonoBehaviour
 		}
 		Lightbulb.SetActive(true);
 		Lightbulb.audio.Play();
+		GameObject[] buttonLights = GameObject.FindGameObjectsWithTag("KeypadButton");
+		foreach(GameObject go in buttonLights)
+		{
+			Light light = go.GetComponentInChildren<Light>();
+			if(light != null)
+			{
+				light.enabled = true;
+			}
+		}
 		yield return new WaitForSeconds(3);
 		Bomb.GetTimer().StartTimer();
 	}
