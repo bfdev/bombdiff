@@ -17,7 +17,7 @@ public class BombGenerator : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		CreateBomb();
+
 	}
 
 	// Update is called once per frame
@@ -26,7 +26,7 @@ public class BombGenerator : MonoBehaviour
 
 	}
 
-	protected void CreateBomb()
+	public Bomb CreateBomb()
 	{
 		GameObject bombPrefab = randomGOFromArray(bombPrefabs);
 		GameObject newBomb = GameObject.Instantiate(bombPrefab, new Vector3(-0.03f, 0.9f, -0.42f), Quaternion.identity) as GameObject;
@@ -109,8 +109,11 @@ public class BombGenerator : MonoBehaviour
 				                                             serialAnchorPoint.position, 
 				                                             serialAnchorPoint.rotation) as GameObject;
 				serialGO.transform.parent = bombScript.visualTransform;
+				bombScript.Serial = serialGO.GetComponent<SerialNumber>();
 			}
 		}
+
+		return bombScript;
 	}
 
 	protected GameObject randomGOFromArray(GameObject[] array)
