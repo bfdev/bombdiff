@@ -135,6 +135,12 @@ public class Bomb : MonoBehaviour
 			detonator.Explode ();
 			Debug.Log("boom");
 			hasDetonated = true;
+			GetTimer().StopTimer();
+			SceneManager.Instance.radio.StopMusic();
+			foreach(StatusLight statusLight in StatusLights)
+			{
+				statusLight.SetInactive();
+			}
 		}
 	}
 
