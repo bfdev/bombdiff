@@ -50,6 +50,12 @@ public class SceneManager : MonoBehaviour
 		StartCoroutine(StartRound());
     }
 
+	void Update() {
+		if (Input.GetKeyUp (KeyCode.R)) {
+			ResetGame ();
+		}
+	}
+
 	protected bool TryLoadSettings()
 	{
 		Debug.Log ("Attempting to load settings...");
@@ -151,5 +157,8 @@ public class SceneManager : MonoBehaviour
 		yield return new WaitForSeconds(3);
 		Bomb.GetTimer().StartTimer();
 	}
-}
 
+	public void ResetGame() {
+		Application.LoadLevel (0);
+	}
+}
