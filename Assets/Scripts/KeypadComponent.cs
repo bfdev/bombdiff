@@ -28,14 +28,25 @@ public class KeypadComponent : MonoBehaviour {
 	
 	public bool ButtonPushed(int index) {
 		KeypadButton pressedButton = buttons [index];
+		if (pressedButton.isPressed) {
+			return false;
+		}
 		int solutionValue = solutionOrder.IndexOf (pressedButton.GetText ());
+		int numPressed = 0;
 		foreach(KeypadButton button in buttons) {
 			int otherSolVal = solutionOrder.IndexOf (button.GetText ());
-			if(!button.isPressed && otherSolVal < solutionValue) {
+			if(button.isPressed) {
+				numPressed++;
+			}
+
+			else if(otherSolVal < solutionValue) {
+				SceneManager.Instance.Bomb.OnStrike();
 				return false;
 			}
 		}
-
+		if (numPressed == 3) {
+			SceneManager.Instance.Bomb.OnPass ();
+		}
 		return true;
 	}
 	

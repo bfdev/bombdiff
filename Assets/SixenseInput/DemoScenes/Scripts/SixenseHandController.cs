@@ -16,6 +16,7 @@ public class SixenseHandController : SixenseObjectController
 	HandTool					m_tool;
 	int							m_toolNum;
 	bool						m_toolPressed;
+	bool						m_isActivating;
 	
 	protected override void Start() 
 	{
@@ -23,6 +24,7 @@ public class SixenseHandController : SixenseObjectController
 		m_animator = this.gameObject.GetComponent<Animator>();
 		m_toolNum = 0;
 		m_toolPressed = false;
+		m_isActivating = false;
 		
 		base.Start();
 	}
@@ -105,12 +107,14 @@ public class SixenseHandController : SixenseObjectController
 		// Fist
 		float fTriggerVal = controller.Trigger;
 		if (fTriggerVal > 0.01f) {
-			if(m_tool) {
+			if(m_tool && !m_isActivating) {
 				m_tool.Activate();
+				m_isActivating = true;
 			} else {
 				m_pickupZone.Grab();
 			}
 		} else {
+			m_isActivating = false;
 			m_pickupZone.Drop();
 		}
 
