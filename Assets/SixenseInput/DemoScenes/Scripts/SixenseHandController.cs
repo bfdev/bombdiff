@@ -146,13 +146,15 @@ public class SixenseHandController : SixenseObjectController
 		if (m_toolNum > HandTool.GetNumTools ()) {
 			m_toolNum = 0;
 		}
-		Destroy (m_tool);
+		if (m_tool) {
+			Destroy (m_tool.gameObject);
+		}
 		m_tool = HandTool.GetTool(m_toolNum);
 		if(m_tool) {
 			m_tool.transform.position = m_handItemSpawn.transform.position;
 			m_tool.transform.parent = m_handItemSpawn.transform;
-			m_toolNum++;
 		}
+		m_toolNum++;
 	}
 }
 
