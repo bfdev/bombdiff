@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 public class Timer : MonoBehaviour {
-	float timeRemaining;
+	public float timeRemaining;
 	float lastBeep;
 	public TextMesh text;
 	public AudioSource fastBeep;
