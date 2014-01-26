@@ -7,6 +7,7 @@ public class SceneManager : MonoBehaviour
 
 	public BombGenerator BombGenerator;
 	public int NumStrikesToLose;
+	public float SecondsToSolve;
 
 	public Bomb Bomb;
 
@@ -19,6 +20,7 @@ public class SceneManager : MonoBehaviour
 	{
 		//Eventually options and game flow will go here
 		Bomb = BombGenerator.CreateBomb(NumStrikesToLose);
+		Bomb.GetTimer().SetTimeRemaing(SecondsToSolve);
     }
 }
 

@@ -18,6 +18,8 @@ public class Bomb : MonoBehaviour
 	public int NumPassesToWin;
 	public int NumPasses;
 
+	protected bool hasDetonated;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -53,22 +55,27 @@ public class Bomb : MonoBehaviour
 				case 0:
 					{
 						//first strike
-						//maybe just make a sound?
+						//lose 30 seconds
+						GetTimer().SubtractTime(30);
 					}
 					break;
 				case 1:
 					{
 						//second strike
+						//speed up the clock
+						GetTimer().SetRateModifier(1.5f);
 					}
 					break;
 				case 2:
 					{
 						//third strike
+						GetTimer().SetRateModifier(3.0f);
 					}
 					break;
-				case 4:
+				case 3:
 					{
 						//fourth strike
+						GetTimer().SetRateModifier(6.0f);
 					}
 					break;
 			}
@@ -89,6 +96,15 @@ public class Bomb : MonoBehaviour
 	public void OnPass()
 	{
 		
+	}
+
+	public void Detonate()
+	{
+		if (!hasDetonated)
+		{
+			Debug.Log("boom");
+			hasDetonated = true;
+		}
 	}
 
 	public Timer GetTimer()

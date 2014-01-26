@@ -11,31 +11,71 @@ public class Timer : MonoBehaviour {
 	public Transform[] StatusLightAnchors;
 	public GameObject StatusLightPrefab;
 
+	protected bool isUpdating = true;
+	protected float rateModifier = 1f;
+
 	// Use this for initialization
-	void Start () {
-		timeRemaining = 120.0f;
-		lastBeep = 0.0f;
+	void Start () 
+	{
+		lastBeep = float.MaxValue;
 		UpdateDisplay ();
+	}
+
+	public void SetTimeRemaing(float time)
+	{
+		timeRemaining = Mathf.Max (0, time);
+		UpdateDisplay ();
+	}
+
+	public void SubtractTime(float deltaTime)
+	{
+		timeRemaining = Mathf.Max (0, timeRemaining - deltaTime);
+		UpdateDisplay ();
+	}
+
+	public void SetRateModifier(float newRate)
+	{
+		rateModifier = newRate;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Mathf.Floor (timeRemaining - Time.deltaTime) < Mathf.Floor (timeRemaining)) {
+	void Update () 
+	{
+		if (!isUpdating)
+		{
+			return;
+		}
+
+		//if (Mathf.Floor (timeRemaining - Time.deltaTime) < Mathf.Floor (timeRemaining)) 
+		{
 			UpdateDisplay ();
 		}
-		timeRemaining -= Time.deltaTime;
-		if (timeRemaining > 15) {
-			if (lastBeep > 1.0f) {
-				lastBeep = 0.0f;
+
+		timeRemaining -= (Time.deltaTime * rateModifier);
+
+		if (timeRemaining > 30) 
+		{
+			//Debug.Log (String.Format("last:{0} timeRemaining:{1} dif: {2}", lastBeep, timeRemaining, lastBeep - timeRemaining));
+			if (lastBeep - timeRemaining > 1.0f) 
+			{
+				lastBeep = timeRemaining;
 				audio.Play ();
 			}
-		} else {
-			if (lastBeep > 0.15f) {
-				fastBeep.Play ();
-				lastBeep = 0.0f;
+		}
+		else
+		{
+			if (lastBeep - timeRemaining > 0.5f) 
+			{
+				lastBeep = timeRemaining;
+				audio.Play ();
 			}
 		}
-		lastBeep += Time.deltaTime;
+
+		if (timeRemaining <= 0)
+		{
+			SceneManager.Instance.Bomb.Detonate();
+			isUpdating = false;
+		}
 	}
 
 	void UpdateDisplay() {
