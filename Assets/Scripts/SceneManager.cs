@@ -19,6 +19,11 @@ public class SceneManager : MonoBehaviour
 	public GameObject Lightbulb;
 	public AudioClip Victory;
 
+	public Texture2D BlankTexture;
+
+	protected bool fadingOut;
+	protected float fadeAlpha = 0f;
+
 	void Awake()
 	{
 		Instance = this;
@@ -77,6 +82,28 @@ public class SceneManager : MonoBehaviour
 
 		return false;
     }
+
+	public void StartFade()
+	{
+		StartCoroutine(FadeRoutine());
+	}
+
+	protected IEnumerator FadeRoutine()
+	{
+		yield return new WaitForSeconds(3f);
+		fadingOut = true;
+	}
+
+	void OnGUI()
+	{
+		if (fadingOut)
+		{
+			fadeAlpha += Mathf.Clamp01(Time.deltaTime / 5);
+			
+			GUI.color = new Color(0, 0, 0, fadeAlpha);
+			GUI.DrawTexture( new Rect(0, 0, Screen.width, Screen.height ), BlankTexture );
+		}
+	}
 
 	protected void SaveSettingsIfNoneExist()
 	{

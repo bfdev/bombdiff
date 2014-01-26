@@ -147,6 +147,8 @@ public class Bomb : MonoBehaviour
 				((SixenseHandController)hand).m_pickupZone.Drop();
 				((SixenseHandController)hand).gameObject.SetActive(false);
 			}
+
+			SceneManager.Instance.StartFade();
 		}
 	}
 
