@@ -47,7 +47,7 @@ public class Bomb : MonoBehaviour
 			//turn on the next light
 			if (NumStrikes < StatusLights.Count)
 			{
-				StatusLights[NumStrikes].SetStrike();
+				StatusLights[NumStrikes].SetStrike(true);
 			}
 
 			switch(NumStrikes)

@@ -11,11 +11,16 @@ public class StatusLight : MonoBehaviour
 	{
 	}
 
-	public void SetStrike()
+	public void SetStrike(bool playAudio)
 	{
 		this.light.enabled = true;
 		this.light.color = Color.red;
 		this.renderer.material = StrikeMaterial;
+
+		if (playAudio)
+		{
+			audio.Play();
+		}
 	}
 
 	[ContextMenu("PanicTest")]
@@ -28,7 +33,7 @@ public class StatusLight : MonoBehaviour
 	{
 		while(true)
 		{
-			SetStrike();
+			SetStrike(false);
 			yield return new WaitForSeconds(PanicBlinkRate);
 			SetInactive();
 			yield return new WaitForSeconds(PanicBlinkRate);
