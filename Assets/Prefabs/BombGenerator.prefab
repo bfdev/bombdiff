@@ -40,9 +40,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPrefabs:
   - {fileID: 100010, guid: 4a2e12d27541e604d865357ebf3bc7cf, type: 2}
-  componentPrefabs:
-  - {fileID: 100002, guid: a9a82478bcaaca048a7f3fff0d92c583, type: 2}
+  solvableComponentPrefabs:
   - {fileID: 100002, guid: 134f1b9aa2193184c8609255ec19cec6, type: 2}
+  unsolvableComponentPrefabs:
+  - {fileID: 100002, guid: a9a82478bcaaca048a7f3fff0d92c583, type: 2}
+  requiredComponentPrefabs: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
