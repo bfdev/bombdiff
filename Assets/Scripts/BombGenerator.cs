@@ -26,7 +26,7 @@ public class BombGenerator : MonoBehaviour
 
 	}
 
-	public Bomb CreateBomb(int numStrikesToFail)
+	public Bomb CreateBomb(int numStrikesToFail, int numSolvableComponents)
 	{
 		GameObject bombPrefab = randomGOFromArray(bombPrefabs);
 		GameObject newBomb = GameObject.Instantiate(bombPrefab, new Vector3(0, 0.9f, 0.42f), Quaternion.identity) as GameObject;
@@ -46,6 +46,7 @@ public class BombGenerator : MonoBehaviour
 		}
 
 		// Intermediate component set that has bad ordering
+		int numSolvableComponentsRemaining = numSolvableComponents;
 		GameObject[] newComponents = new GameObject[bombScript.componentAnchorPoints.Length];
 		for (int i = 0; i < newComponents.Length; i++)
 		{
@@ -59,12 +60,22 @@ public class BombGenerator : MonoBehaviour
 			{
 				GameObject newComponent = randomGOFromArray(solvableComponentPrefabs);
 				newComponents[i] = newComponent;
+				numSolvableComponentsRemaining--;
 			}
 			// The rest are totally random
 			else
 			{
-				GameObject newComponent = randomGOFromArray(allComponents);
-				newComponents[i] = newComponent;
+				if (numSolvableComponentsRemaining > 0)
+				{
+					GameObject newComponent = randomGOFromArray(solvableComponentPrefabs);
+					newComponents[i] = newComponent;
+					numSolvableComponentsRemaining--;
+				}
+				else
+				{
+					GameObject newComponent = randomGOFromArray(unsolvableComponentPrefabs);
+					newComponents[i] = newComponent;
+                }
 			}
 		}
 
