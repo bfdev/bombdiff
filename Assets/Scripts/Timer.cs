@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour {
 	{
 		lastBeep = float.MaxValue;
 		UpdateDisplay ();
+		isUpdating = false;
 	}
 
 	public void SetTimeRemaing(float time)
@@ -36,6 +37,11 @@ public class Timer : MonoBehaviour {
 	public void SetRateModifier(float newRate)
 	{
 		rateModifier = newRate;
+	}
+
+	public void StartTimer()
+	{
+		isUpdating = true;
 	}
 	
 	// Update is called once per frame

@@ -43,6 +43,7 @@ MonoBehaviour:
   SecondsToSolve: 300
   NumComponentsToSolve: 3
   Bomb: {fileID: 0}
+  Lightbulb: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
