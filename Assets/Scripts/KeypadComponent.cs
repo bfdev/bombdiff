@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class KeypadComponent : MonoBehaviour {
 	public KeypadButton[] buttons;
-	string[] symbols = {"©","★","☆","ئ","ټ","Җ","Ω","Ѭ","Ѽ"};
+	string[] symbols = {"©","★","☆","⊛","ټ","Җ","Ω","Ѭ","Ѽ"};
 	List<string> solutionOrder;
 	
 	// Use this for initialization
@@ -18,7 +18,6 @@ public class KeypadComponent : MonoBehaviour {
 			button.buttonIndex = i;
 			symbolsClone.RemoveAt (rand);
 		}
-		solutionOrder = GetSolutionOrder ();
 	}
 	
 	// Update is called once per frame
@@ -31,6 +30,7 @@ public class KeypadComponent : MonoBehaviour {
 		if (pressedButton.isPressed) {
 			return false;
 		}
+		List<string> solutionOrder = GetSolutionOrder ();
 		int solutionValue = solutionOrder.IndexOf (pressedButton.GetText ());
 		int numPressed = 0;
 		foreach(KeypadButton button in buttons) {
@@ -51,23 +51,23 @@ public class KeypadComponent : MonoBehaviour {
 	}
 	
 	List<string> GetSolutionOrder() {
-		List<string> solutionOrder = new List<string>(new string[]{"©","★","☆","ئ","ټ","Җ","Ω","Ѭ","Ѽ"});
+		List<string> solutionOrder = new List<string>(new string[]{"©","★","☆","⊛","ټ","Җ","Ω","Ѭ","Ѽ"});
 		SerialNumber sn = SceneManager.Instance.Bomb.Serial;
 		//Serial number starts with number
-		/*if (!char.IsLetter(sn.GetSerialString()[0]))
+		if (sn && !char.IsLetter(sn.GetSerialString()[0]))
 		{
-			return new List<string>(new string[]{"Җ","Ѽ","★","©","ئ","☆","ټ","Ω","Ѭ"});
-		}*/
+			return new List<string>(new string[]{"Җ","Ѽ","★","©","⊛","ټ","Ω","Ѭ","☆"});
+		}
 		
 		foreach (KeypadButton button in buttons) {
 			if(button.GetText() == "Ѭ") {
-				return new List<string>(new string[]{"Ѭ","Җ","©","Ѽ","★","Ω","ئ","☆","ټ"});
+				return new List<string>(new string[]{"Ѭ","Җ","©","Ѽ","★","☆","Ω","⊛","ټ"});
 			}
 		}
 		
 		foreach (KeypadButton button in buttons) {
 			if(button.GetText() == "Җ") {
-				return new List<string>(new string[]{"Ѽ","★","Ω","ئ","☆","Ѭ","Җ","©","ټ"});
+				return new List<string>(new string[]{"Ѽ","★","Ω","ټ","☆","Ѭ","Җ","©","⊛"});
 			}
 		}
 		
