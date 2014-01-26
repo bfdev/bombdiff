@@ -55,6 +55,7 @@ public class WireSetComponent : MonoBehaviour
 		{
 			//Uh oh! Boooooom!
 			Debug.Log(String.Format ("Wrong wire snipped: {0} but solution is {1}!", indexOfCutWire, correctWire));
+			SceneManager.Instance.Bomb.OnStrike();
 		}
 	}
 

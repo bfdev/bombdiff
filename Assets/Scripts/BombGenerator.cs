@@ -10,7 +10,7 @@ public class BombGenerator : MonoBehaviour
 
 	public GameObject SerialNumberPrefab;
 
-	public float SerialNumberChance = 0.5f;
+	public float SerialNumberChance;
 
 	protected System.Random rand = new System.Random();
 
@@ -26,7 +26,7 @@ public class BombGenerator : MonoBehaviour
 
 	}
 
-	public Bomb CreateBomb()
+	public Bomb CreateBomb(int numStrikesToFail)
 	{
 		GameObject bombPrefab = randomGOFromArray(bombPrefabs);
 		GameObject newBomb = GameObject.Instantiate(bombPrefab, new Vector3(-0.03f, 0.9f, -0.42f), Quaternion.identity) as GameObject;
@@ -112,6 +112,30 @@ public class BombGenerator : MonoBehaviour
 				bombScript.Serial = serialGO.GetComponent<SerialNumber>();
 			}
 		}
+
+
+		//Add the status lights
+		Timer timer = bombScript.GetTimer();
+		if (timer != null)
+		{
+			numStrikesToFail = Mathf.Clamp(numStrikesToFail, 2, Mathf.Min(timer.StatusLightAnchors.Length + 1, 5));
+			bombScript.NumStrikesToLose = numStrikesToFail;
+
+			int numStatusLights = numStrikesToFail - 1;
+
+			for (int i = 0; i < numStatusLights; i++)
+			{
+				//get the next status light anchor and instantiate a light there
+				Transform statusLightAnchorPoint = timer.StatusLightAnchors[i];
+				GameObject statusLightGO = GameObject.Instantiate(timer.StatusLightPrefab, 
+				                                                  statusLightAnchorPoint.position, 
+				                                                  statusLightAnchorPoint.rotation) as GameObject;
+				statusLightGO.transform.parent = timer.transform;
+
+				bombScript.StatusLights.Add(statusLightGO.GetComponent<StatusLight>());
+            }
+		}
+
 
 		return bombScript;
 	}
