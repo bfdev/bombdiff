@@ -9,6 +9,7 @@ public class SceneManager : MonoBehaviour
 	public int NumStrikesToLose;
 	public float SecondsToSolve;
 	public int NumComponentsToSolve;
+	public Radio radio;
 
 	public Bomb Bomb;
 
