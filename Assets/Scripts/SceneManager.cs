@@ -110,7 +110,6 @@ public class SceneManager : MonoBehaviour
 		Lightbulb.audio.Play();
 		yield return new WaitForSeconds(3);
 		Bomb.GetTimer().StartTimer();
-
 	}
 }
 

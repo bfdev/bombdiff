@@ -144,6 +144,7 @@ public class Bomb : MonoBehaviour
 
 			foreach(var hand in GameObject.FindObjectsOfType(typeof(SixenseHandController)))
 			{
+				((SixenseHandController)hand).m_pickupZone.Drop();
 				((SixenseHandController)hand).gameObject.SetActive(false);
 			}
 		}
