@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour {
 			UpdateDisplay ();
 		}
 		timeRemaining -= Time.deltaTime;
-		if (timeRemaining > 115) {
+		if (timeRemaining > 15) {
 			if (lastBeep > 1.0f) {
 				lastBeep = 0.0f;
 				audio.Play ();

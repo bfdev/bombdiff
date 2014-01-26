@@ -25,7 +25,7 @@ public class BombGenerator : MonoBehaviour
 		{
 			rand -= 1;
 		}
-		GameObject newBomb = GameObject.Instantiate(bombPrefabs[rand]) as GameObject;
+		GameObject newBomb = GameObject.Instantiate(bombPrefabs[rand], new Vector3(-0.03f,0.9f,-0.42f), Quaternion.identity) as GameObject;
 		Bomb bombScript = newBomb.GetComponent<Bomb>();
 
 		foreach(Transform anchorPoint in bombScript.componentAnchorPoints)
