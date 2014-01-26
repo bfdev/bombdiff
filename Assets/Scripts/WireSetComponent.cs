@@ -8,19 +8,16 @@ public class WireSetComponent : MonoBehaviour
 	public GameObject wirePrefab;
 	public float spawnRange = 5;
 	public int maxWires = 1;
+	public int minWires = 2;
 
 	public SnippableWire[] wires;
 
 	// Use this for initialization
 	void Start()
 	{
-		int rand = (int)(UnityEngine.Random.value * maxWires) + 1;
-		if (rand == maxWires + 1)
-		{
-			rand -= 1;
-		}
+		int rand = (int)(UnityEngine.Random.value * maxWires) + minWires;
+		int numberOfWires = Mathf.Clamp(rand, minWires, maxWires);
 
-		int numberOfWires = rand;
 		wires = new SnippableWire[numberOfWires];
 
 		float zStepSize = spawnRange / (numberOfWires + 1);
