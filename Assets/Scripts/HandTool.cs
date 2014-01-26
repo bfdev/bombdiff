@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class HandTool : MonoBehaviour {
-	static GameObject[] toolPrefabs = {(GameObject)Resources.Load ("Wirecutters")};
+	static GameObject[] toolPrefabs = {(GameObject)Resources.Load ("Wirecutters"), (GameObject)Resources.Load ("DialingWand")};
 
 	// Use this for initialization
 	void Start () {
