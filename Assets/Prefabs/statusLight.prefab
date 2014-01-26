@@ -101,12 +101,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76029f6ba3600a8458ca5a077b2fefbe, type: 3}
+  m_Script: {fileID: 11500000, guid: 113ff93b591f62a4ba6bfea987ccd562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InactiveMaterial: {fileID: 2100000, guid: c661ca7583df6a7439dece6392e20cb4, type: 2}
-  StrikeMaterial: {fileID: 2100000, guid: 5ece16e37ff280349889b77068d80fd6, type: 2}
-  PanicBlinkRate: .200000003
+  InactiveMaterial: {fileID: 0}
+  StrikeMaterial: {fileID: 0}
+  PanicBlinkRate: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
