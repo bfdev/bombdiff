@@ -12,6 +12,8 @@ public class WireSetComponent : MonoBehaviour
 
 	public SnippableWire[] wires;
 
+	protected bool passed;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -48,8 +50,13 @@ public class WireSetComponent : MonoBehaviour
 
 		if (indexOfCutWire == correctWire)
 		{
-			//Yay!
-			Debug.Log(String.Format ("Correct wire snipped: {0}!", indexOfCutWire));
+			if (!passed)
+			{
+				//Yay!
+				Debug.Log(String.Format ("Correct wire snipped: {0}!", indexOfCutWire));
+				SceneManager.Instance.Bomb.OnPass();
+				passed = true;
+			}
 		}
 		else
 		{

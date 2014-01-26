@@ -15,8 +15,8 @@ public class Bomb : MonoBehaviour
 	public int NumStrikesToLose;
 	public int NumStrikes;
 
-	public int NumPassesToWin;
-	public int NumPasses;
+	protected int numPasses;
+	protected int numPassesToWin;
 
 	protected bool hasDetonated;
 
@@ -95,9 +95,37 @@ public class Bomb : MonoBehaviour
 	//Called by a component when the player correctly solves it
 	public void OnPass()
 	{
-		
+		numPasses++;
+
+		int numPassesToWin = 0;
+
+		foreach(var comp in BombComponents)
+		{
+			if (comp.GetComponent<WireSetComponent>() != null ||
+			    comp.GetComponent<KeypadComponent>() != null)
+			{
+				numPassesToWin++;
+			}
+		}
+
+		if (numPasses >= numPassesToWin)
+		{
+			GameWon();
+		}
 	}
 
+	protected void GameWon()
+	{
+		Debug.Log ("A winner is you!!");
+		GetTimer().StopTimer();
+		foreach(StatusLight statusLight in StatusLights)
+		{
+			statusLight.SetPass();
+        }
+		audio.PlayOneShot(SceneManager.Instance.Victory);
+		SceneManager.Instance.radio.StopMusic();
+    }
+    
 	public void Detonate()
 	{
 		if (!hasDetonated)

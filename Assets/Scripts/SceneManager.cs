@@ -15,6 +15,7 @@ public class SceneManager : MonoBehaviour
 	public Bomb Bomb;
 
 	public GameObject Lightbulb;
+	public AudioClip Victory;
 
 	void Awake()
 	{

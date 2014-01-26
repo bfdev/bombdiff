@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: WireBlue
-  m_Shader: {fileID: 3, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: StatusLightPass
+  m_Shader: {fileID: 12, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -22,7 +22,7 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Cube
+          name: _Illum
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -31,17 +31,17 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .631808341
+        second: .078125
+      data:
+        first:
+          name: _EmissionLM
+        second: 0
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .0344829559, g: 0, b: 1, a: 1}
+        second: {r: 0, g: 1, b: .00689649582, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: 0, g: .267748475, b: .705882311, a: 1}
-      data:
-        first:
-          name: _ReflectColor
-        second: {r: 1, g: 1, b: 1, a: .5}
+        second: {r: .992647052, g: .992647052, b: .992647052, a: 1}

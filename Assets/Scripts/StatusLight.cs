@@ -5,6 +5,7 @@ public class StatusLight : MonoBehaviour
 {
 	public Material InactiveMaterial;
 	public Material StrikeMaterial;
+	public Material PassMaterial;
 	public float PanicBlinkRate;
 
 	void Start()
@@ -21,6 +22,13 @@ public class StatusLight : MonoBehaviour
 		{
 			audio.Play();
 		}
+	}
+
+	public void SetPass()
+	{
+		StopAllCoroutines();
+		this.light.color = Color.green;
+		this.renderer.material = PassMaterial;
 	}
 
 	[ContextMenu("PanicTest")]

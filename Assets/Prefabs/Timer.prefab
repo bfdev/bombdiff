@@ -159,7 +159,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 025e5532158b72c4a9995e5e322820e2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .100000001
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8741cf4131757ed42a46f74fef792218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeRemaining: 0
   text: {fileID: 10200000}
   fastBeep: {fileID: 8200000}
   StatusLightAnchors: []

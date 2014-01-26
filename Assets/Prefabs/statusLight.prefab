@@ -165,7 +165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InactiveMaterial: {fileID: 2100000, guid: c661ca7583df6a7439dece6392e20cb4, type: 2}
   StrikeMaterial: {fileID: 2100000, guid: 5ece16e37ff280349889b77068d80fd6, type: 2}
-  PanicBlinkRate: 0
+  PassMaterial: {fileID: 2100000, guid: 204d4b79cbd1b79478ad0bc122008f90, type: 2}
+  PanicBlinkRate: .100000001
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

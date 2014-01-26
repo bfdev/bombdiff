@@ -20,6 +20,14 @@ public class Radio : MonoBehaviour {
 		source.Play ();
 	}
 
+	public void StopMusic()
+	{
+		foreach(AudioSource audioSrc in music)
+		{
+			audioSrc.Stop();
+		}
+	}
+
 	AudioSource GetNextSource() {
 		float timeRemaining = SceneManager.Instance.Bomb.GetTimer().timeRemaining;
 		float timeTotal = SceneManager.Instance.SecondsToSolve;
