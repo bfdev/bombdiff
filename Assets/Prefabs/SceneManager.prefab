@@ -41,7 +41,7 @@ MonoBehaviour:
   BombGenerator: {fileID: 11400000, guid: 9b4083d146dcfca4181c9b4986300e84, type: 2}
   NumStrikesToLose: 5
   SecondsToSolve: 300
-  NumComponentsToSolve: 5
+  NumComponentsToSolve: 3
   radio: {fileID: 0}
   Bomb: {fileID: 0}
   Lightbulb: {fileID: 0}

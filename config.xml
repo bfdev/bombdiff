@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<GameSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SecondsToSolve>300</SecondsToSolve>
+  <NumStrikesToLose>5</NumStrikesToLose>
+  <Difficulty>3</Difficulty>
+</GameSettings>

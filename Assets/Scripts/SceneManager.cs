@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using System.IO;
+using System.Xml.Serialization;
 
 public class SceneManager : MonoBehaviour
 {
@@ -24,6 +26,13 @@ public class SceneManager : MonoBehaviour
 
 	void Start()
 	{
+		bool loadedSettings = TryLoadSettings();
+
+		if (!loadedSettings)
+		{
+			SaveSettingsIfNoneExist();
+		}
+
 		//Eventually options and game flow will go here
 		Lightbulb.SetActive(false);
 		Bomb = BombGenerator.CreateBomb(NumStrikesToLose, NumComponentsToSolve);
@@ -35,6 +44,50 @@ public class SceneManager : MonoBehaviour
         
 		StartCoroutine(StartRound());
     }
+
+	protected bool TryLoadSettings()
+	{
+		Debug.Log ("Attempting to load settings...");
+
+		try
+		{
+			XmlSerializer serializer = new XmlSerializer(typeof(GameSettings));
+			FileStream file = new FileStream("config.xml", FileMode.Open);
+			GameSettings settings = (GameSettings) serializer.Deserialize(file);
+
+			SecondsToSolve = settings.SecondsToSolve;
+			NumStrikesToLose = settings.NumStrikesToLose;
+			NumComponentsToSolve = settings.Difficulty;
+
+			Debug.Log ("Successfully loaded settings.");
+
+			return true;
+		}
+		catch(Exception e)
+		{
+			//meh
+			Debug.Log ("Failed to load settings: " + e.Message);
+		}
+
+		return false;
+    }
+
+	protected void SaveSettingsIfNoneExist()
+	{
+		try
+		{
+			XmlSerializer serializer = new XmlSerializer(typeof(GameSettings));
+			FileStream file = new FileStream("config.xml", FileMode.CreateNew);
+			serializer.Serialize(file, new GameSettings());
+
+			Debug.Log ("Successfully saved settings.");
+		}
+		catch(Exception e)
+        {
+            //meh
+            Debug.Log ("Failed to save settings: " + e.Message);
+		}
+	}
 
 	protected void SetAllTextRenderers(bool toggle)
 	{
