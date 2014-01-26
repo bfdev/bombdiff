@@ -31,10 +31,16 @@ public class KeypadButton : MonoBehaviour {
 		}
 
 		if(highlighted) {
-			renderer.material.color = Color.gray;
+			renderer.material.color = new Color(232.0f / 255.0f, 124.0f / 255.0f, 38.0f / 255.0f);
 		} else {
 			renderer.material.color = Color.white;
 		}
+	}
+
+	[ContextMenu("Force Highlight Now")]
+	public void ForceHighlightNow()
+	{
+		SetHighlight(true);
 	}
 
 	public void Push() {

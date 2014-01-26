@@ -371,7 +371,7 @@ MonoBehaviour:
   blackMaterial: {fileID: 2100000, guid: 37c5ea80cbf4eb940b67a959b0d7ff7e, type: 2}
   blueMaterial: {fileID: 2100000, guid: 5e55d65b832a8c34ebe132cb820fa506, type: 2}
   redMaterial: {fileID: 2100000, guid: 459d9b036982d004b8bf44316eb2541c, type: 2}
-  whiteMaterial: {fileID: 2100000, guid: f8a9478cd2f152f46a11a01d76b19a3a, type: 2}
+  geenMaterial: {fileID: 2100000, guid: f8a9478cd2f152f46a11a01d76b19a3a, type: 2}
   yellowMaterial: {fileID: 2100000, guid: 21f01215812ebf640ab5a122c81f814d, type: 2}
   blackMaterialHighlight: {fileID: 2100000, guid: 7bc05983b54268f48b17dd308903e6f3,
     type: 2}
@@ -379,7 +379,7 @@ MonoBehaviour:
     type: 2}
   redMaterialHighlight: {fileID: 2100000, guid: f2c4db74759563e4fbdf5bdfed358812,
     type: 2}
-  whiteMaterialHighlight: {fileID: 2100000, guid: 1724037e228a9a94b9dce7c8eb5fdbf7,
+  geenMaterialHighlight: {fileID: 2100000, guid: 1724037e228a9a94b9dce7c8eb5fdbf7,
     type: 2}
   yellowMaterialHighlight: {fileID: 2100000, guid: 18afb9bf2d8aa064ebea0618b7fe32a1,
     type: 2}

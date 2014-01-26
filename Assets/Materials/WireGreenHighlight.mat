@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: WireWhiteHighlight
+  m_Name: WireGreenHighlight
   m_Shader: {fileID: 10, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -47,7 +47,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .772058845, g: .772058845, b: .772058845, a: 1}
+        second: {r: .237931073, g: 1, b: .237931073, a: 1}
       data:
         first:
           name: _SpecColor
