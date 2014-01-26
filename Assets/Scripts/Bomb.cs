@@ -19,6 +19,7 @@ public class Bomb : MonoBehaviour
 	public int NumPasses;
 
 	protected bool hasDetonated;
+	public Detonator detonator;
 
 	// Use this for initialization
 	void Start()
@@ -102,6 +103,7 @@ public class Bomb : MonoBehaviour
 	{
 		if (!hasDetonated)
 		{
+			detonator.Explode ();
 			Debug.Log("boom");
 			hasDetonated = true;
 		}
