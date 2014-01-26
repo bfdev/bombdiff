@@ -16,7 +16,7 @@ namespace BombGame
 		Black,
 		Blue,
 		Red,
-		White,
+		Green,
 		Yellow
 	}
 }
