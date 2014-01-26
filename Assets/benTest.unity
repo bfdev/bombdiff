@@ -3923,6 +3923,10 @@ Prefab:
       propertyPath: rolloffMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 746d22113a08613428b42b8aa15db0ff, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 746d22113a08613428b42b8aa15db0ff, type: 2}
   m_RootGameObject: {fileID: 1151513653}

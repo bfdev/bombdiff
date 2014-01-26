@@ -57,6 +57,6 @@ public class SerialNumber : MonoBehaviour
 
 	public bool IsLastDigitEven()
 	{
-		return System.Int32.Parse(serialString.Substring(serialString.Length - 1, 1)) / 2 == 0;
+		return System.Int32.Parse(serialString.Substring(serialString.Length - 1, 1)) % 2 == 0;
 	}
 }

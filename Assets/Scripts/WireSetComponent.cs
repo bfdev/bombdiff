@@ -7,8 +7,8 @@ public class WireSetComponent : MonoBehaviour
 {
 	public GameObject wirePrefab;
 	public float spawnRange = 5;
-	public int maxWires = 1;
-	public int minWires = 2;
+	public int maxWires = 6;
+	public int minWires = 3;
 
 	public SnippableWire[] wires;
 
@@ -69,65 +69,89 @@ public class WireSetComponent : MonoBehaviour
 	//Based on the state of the bomb, calculate the correct wire index to cut
 	protected int GetSolutionIndex()
 	{
-		String solution = "";
-
 		int wireCount = wires.Length;
 		int solutionIndex = -1;
 
-		if (wireCount >= 4) 
+		SerialNumber sn = SceneManager.Instance.Bomb.Serial;
+
+		String solution = String.Format("{0} wires, ", wireCount);
+
+		switch(wireCount)
 		{
-			solution += "More than 3 wires, ";
-
-			if (GetColourCount(WireColour.Blue) == 1)
+			case 3:
 			{
-				solution += "exactly one blue wire, cut index 2.";
-				solutionIndex = 2;
-			}
-			else
-			{
-				solution += "blue wire count != 1, cut index 1.";
-				solutionIndex = 1;
-			}
-		}
-		else if (wireCount >= 1)
-		{
-			solution += "Less than 4 wires but more than 0, ";
-			if (GetColourCount(WireColour.Yellow) > 0)
-			{
-				int indexOfYellow = GetFirstIndexOfColour(WireColour.Yellow);
-
-				solution += "at least one yellow wire, cut index of first yellow is:" + indexOfYellow;
-				solutionIndex = indexOfYellow;
-			}
-			else if (SceneManager.Instance.Bomb.Serial != null)
-			{
-				solution += "no yellow wires, ";
-
-				SerialNumber sn = SceneManager.Instance.Bomb.Serial;
-
-				if (char.IsLetter(sn.GetSerialString()[0]))
+				if (sn != null && !sn.IsLastDigitEven())
 				{
-					solution += "serial starts with a letter, cut last wire.";
-					solutionIndex = wireCount - 1; //last wire
+					solution += "serial number is odd, cut 2nd wire. ";
+					solutionIndex = 1;
 				}
-				else if (sn.IsLastDigitEven())
+				else if (GetColourCount(WireColour.Yellow) > 0)
 				{
-					solution += "serial does not start with letter, ends with even number, cut first wire.";
-					solutionIndex = 0;
+					solution += "at least one yellow wire, cut last yellow wire. ";
+					solutionIndex = GetLastIndexOfColour(WireColour.Yellow);
 				}
 				else
 				{
-					solution += "serial does not start with letter, ends with odd number, cut last wire.";
-					solutionIndex = wireCount - 1; //last wire
+					solution += "no other rules apply, cut 1st wire. ";
+					solutionIndex = 0;
 				}
 			}
-			else
+			break;
+
+			case 4:
+			case 5:
 			{
-				solution += "no yellow wires, no serial number, cut index 0";
-				solutionIndex = 0;
+				if (GetColourCount(WireColour.Black) == 1)
+				{
+					solution += "exactly one black wire, cut it. ";
+					solutionIndex = GetFirstIndexOfColour(WireColour.Black);
+				}
+				else if (sn != null && char.IsDigit(sn.GetSerialString()[0]))
+				{
+					solution += "serial number starts with a digit, cut 2nd wire. ";
+					solutionIndex = 1;
+				}
+				else if (wires[0].getColour() == WireColour.Yellow ||
+				         wires[0].getColour() == WireColour.Blue)
+				{
+					solution += "last wire is yellow or blue, cut 3rd wire. ";
+					solutionIndex = 2;
+				}
+				else 
+				{
+					solution += "no other rules apply, cut 4th wire. ";
+					solutionIndex = 3;
+				}
 			}
+			break;
+
+			case 6:
+			{
+				if (sn != null && !sn.IsLastDigitEven() && GetColourCount(WireColour.Red) > 0)
+				{
+					solution += "serial number is odd and there is at least one red wire, cut 1st wire. ";
+					solutionIndex = 0;
+				}
+				else if (GetColourCount(WireColour.Black) > GetColourCount(WireColour.Yellow))
+				{
+					solution += "there are more black wires than yellow wires, cut 2nd wire. ";
+					solutionIndex = 1;
+				}
+				else if (GetColourCount(WireColour.Black) == GetColourCount(WireColour.Blue))
+				{
+					solution += "there are as many black wires as blue wires, cut 3rd wire. ";
+					solutionIndex = 2;
+				}
+				else
+				{
+					solution += "no other rules apply, cut 4th wire. ";
+					solutionIndex = 3;
+				}
+			}
+			break;
 		}
 
+		solution += "solutionIndex is " + solutionIndex;
 
 		Debug.Log(solution);
 		return solutionIndex;
@@ -149,6 +173,8 @@ public class WireSetComponent : MonoBehaviour
 				count++;
 			}
 		}
+
+		Debug.Log (String.Format ("There are {0} {1} wires.", count, colour));
 		
 		return count;
 	}
@@ -166,5 +192,19 @@ public class WireSetComponent : MonoBehaviour
 		//Uh oh, no wire of that colour!
 		Debug.Log(String.Format("Tried to get index of Colour {0} wire, but none exists.", colour));
 		return -1;
+	}
+
+	public int GetLastIndexOfColour(WireColour colour)
+	{
+		int index = -1;
+		for(int i = 0; i < wires.Length; i++)
+		{
+			if (wires[i].getColour() == colour)
+			{
+				index = i;
+			}
+		}
+		
+		return index;
 	}
 }

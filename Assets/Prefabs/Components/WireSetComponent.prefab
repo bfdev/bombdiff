@@ -111,7 +111,7 @@ MonoBehaviour:
   wirePrefab: {fileID: 100010, guid: 5abafb92ef368b94ebb3873a10d8db50, type: 2}
   spawnRange: .173999995
   maxWires: 6
-  minWires: 2
+  minWires: 3
   wires: []
 --- !u!1001 &100100000
 Prefab:

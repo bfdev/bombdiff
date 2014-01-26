@@ -106,6 +106,10 @@ public class SceneManager : MonoBehaviour
 		Bomb.GetTimer().light.enabled = true;
 		yield return new WaitForSeconds(5);
 		SetAllTextRenderers(true);
+		if (Bomb.Serial != null)
+		{
+			Bomb.Serial.GetComponent<TextMesh>().renderer.enabled = true;
+		}
 		Lightbulb.SetActive(true);
 		Lightbulb.audio.Play();
 		yield return new WaitForSeconds(3);
