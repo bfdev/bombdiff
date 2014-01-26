@@ -12,11 +12,17 @@ public class SixenseHandController : SixenseObjectController
 	protected Animator			m_animator = null;
 	protected float				m_fLastTriggerVal = 0.0f;
 	public PickupZone					m_pickupZone;
+	public GameObject			m_handItemSpawn;
+	HandTool					m_tool;
+	int							m_toolNum;
+	bool						m_toolPressed;
 	
 	protected override void Start() 
 	{
 		// get the Animator
 		m_animator = this.gameObject.GetComponent<Animator>();
+		m_toolNum = 0;
+		m_toolPressed = false;
 		
 		base.Start();
 	}
@@ -62,10 +68,17 @@ public class SixenseHandController : SixenseObjectController
 		// Point
 		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.ONE) : controller.GetButton(SixenseButtons.TWO) )
 		{
+			if(!m_toolPressed) {
+				NextTool();
+				Debug.Log ("What");
+			}
+
+			m_toolPressed = true;
 			m_animator.SetBool( "Point", true );
 		}
 		else
 		{
+			m_toolPressed = false;
 			m_animator.SetBool( "Point", false );
 		}
 		
@@ -91,17 +104,25 @@ public class SixenseHandController : SixenseObjectController
 				
 		// Fist
 		float fTriggerVal = controller.Trigger;
+		if (fTriggerVal > 0.01f) {
+			if(m_tool) {
+				m_tool.Activate();
+			} else {
+				m_pickupZone.Grab();
+			}
+		} else {
+			m_pickupZone.Drop();
+		}
+
 		fTriggerVal = Mathf.Lerp( m_fLastTriggerVal, fTriggerVal, 0.1f );
 		m_fLastTriggerVal = fTriggerVal;
 		
 		if ( fTriggerVal > 0.01f )
 		{
-			m_pickupZone.Grab();
 			m_animator.SetBool( "Fist", true );
 		}
 		else
 		{
-			m_pickupZone.Drop();
 			m_animator.SetBool( "Fist", false );
 		}
 		
@@ -119,6 +140,17 @@ public class SixenseHandController : SixenseObjectController
 		{
 			m_animator.SetBool("Idle", false);
 		}
+	}
+
+	public void NextTool() {
+		if (m_toolNum > HandTool.GetNumTools ()) {
+			m_toolNum = 0;
+		}
+		Destroy (m_tool);
+		m_tool = HandTool.GetTool(m_toolNum);
+		m_tool.transform.position = m_handItemSpawn.transform.position;
+		m_tool.transform.parent = m_handItemSpawn.transform;
+		m_toolNum++;
 	}
 }
 
