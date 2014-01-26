@@ -50,13 +50,13 @@ public class SerialNumber : MonoBehaviour
 		//resize the backing plate
 	}
 
-	public bool IsLastDigitEven()
-	{
-		return System.Int32.Parse(serialString.Substring(serialString.Length - 1, 1)) / 2 == 0;
-	}
-
 	public string GetSerialString()
 	{
 		return serialString;
+	}
+
+	public bool IsLastDigitEven()
+	{
+		return System.Int32.Parse(serialString.Substring(serialString.Length - 1, 1)) / 2 == 0;
 	}
 }

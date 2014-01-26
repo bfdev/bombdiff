@@ -22,7 +22,7 @@ public class WireSetComponent : MonoBehaviour
 
 		float zStepSize = spawnRange / (numberOfWires + 1);
 		float currentZ = (spawnRange / -2.0f) + zStepSize;
-		for (int i = 0; i < numberOfWires; i++)
+		for (int i = numberOfWires - 1; i >= 0; i--)
 		{
 			GameObject newWire = GameObject.Instantiate(wirePrefab) as GameObject;
 			newWire.transform.parent = this.transform;
@@ -55,6 +55,7 @@ public class WireSetComponent : MonoBehaviour
 		{
 			//Uh oh! Boooooom!
 			Debug.Log(String.Format ("Wrong wire snipped: {0} but solution is {1}!", indexOfCutWire, correctWire));
+			SceneManager.Instance.Bomb.OnStrike();
 		}
 	}
 
@@ -66,7 +67,7 @@ public class WireSetComponent : MonoBehaviour
 		int wireCount = wires.Length;
 		int solutionIndex = -1;
 
-		if (wireCount > 3) 
+		if (wireCount >= 4) 
 		{
 			solution += "More than 3 wires, ";
 
@@ -91,9 +92,31 @@ public class WireSetComponent : MonoBehaviour
 				solution += "at least one yellow wire, cut index of first yellow is:" + indexOfYellow;
 				solutionIndex = indexOfYellow;
 			}
+			else if (SceneManager.Instance.Bomb.Serial != null)
+			{
+				solution += "no yellow wires, ";
+
+				SerialNumber sn = SceneManager.Instance.Bomb.Serial;
+
+				if (char.IsLetter(sn.GetSerialString()[0]))
+				{
+					solution += "serial starts with a letter, cut last wire.";
+					solutionIndex = wireCount - 1; //last wire
+				}
+				else if (sn.IsLastDigitEven())
+				{
+					solution += "serial does not start with letter, ends with even number, cut first wire.";
+					solutionIndex = 0;
+				}
+				else
+				{
+					solution += "serial does not start with letter, ends with odd number, cut last wire.";
+					solutionIndex = wireCount - 1; //last wire
+				}
+			}
 			else
 			{
-				solution += "no yellow wires, cut index 0";
+				solution += "no yellow wires, no serial number, cut index 0";
 				solutionIndex = 0;
 			}
 		}

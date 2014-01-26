@@ -60,7 +60,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: .452806473, y: .394457161, z: .595111847}
+  m_LocalPosition: {x: .452806473, y: .394457072, z: -.504604578}
   m_LocalScale: {x: .295717984, y: .492863655, z: 2.95717883}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -70,7 +70,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: 0, y: -.997784078, z: 0, w: .066536352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.36756441, y: .781484425, z: 1.7288388}
   m_LocalScale: {x: 1, y: .600000024, z: .100000001}
   m_Children:
@@ -299,6 +299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 10200000}
   fastBeep: {fileID: 8200000}
+  StatusLightAnchors: []
+  StatusLightPrefab: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

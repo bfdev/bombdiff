@@ -7,6 +7,10 @@ public class Timer : MonoBehaviour {
 	float lastBeep;
 	public TextMesh text;
 	public AudioSource fastBeep;
+
+	public Transform[] StatusLightAnchors;
+	public GameObject StatusLightPrefab;
+
 	// Use this for initialization
 	void Start () {
 		timeRemaining = 120.0f;
