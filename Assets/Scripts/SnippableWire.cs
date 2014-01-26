@@ -1,16 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BombGame;
 
 public class SnippableWire : MonoBehaviour
 {
-	public enum WireColour
-	{
-		Black,
-		Blue,
-		Red,
-		White,
-		Yellow
-	}
 	public Material blackMaterial;
 	public Material blueMaterial;
 	public Material redMaterial;
@@ -20,7 +13,13 @@ public class SnippableWire : MonoBehaviour
 	public GameObject snippedWire;
 	public GameObject nonSnippedWire;
 
+	public WireSetComponent ParentComponent;
+
+	public int WireIndex;
+
 	protected WireColour _colour;
+	protected bool isSnipped;
+
 
 	// Use this for initialization
 	void Start()
@@ -74,14 +73,24 @@ public class SnippableWire : MonoBehaviour
 		return _colour;
 	}
 
+	[ContextMenu("Snip")]
 	public void Snip()
 	{
-		snippedWire.SetActive(true);
-		nonSnippedWire.SetActive(false);
+		if (!isSnipped)
+		{
+			snippedWire.SetActive(true);
+			nonSnippedWire.SetActive(false);
+
+			//Let's set the color again now!
+			setColour(_colour);
+
+			ParentComponent.OnSnip(WireIndex);
+			isSnipped = true;
+		}
 	}
 
-	public bool isSnipped()
+	public bool IsSnipped()
 	{
-		return nonSnippedWire.activeInHierarchy;
+		return isSnipped;
 	}
 }
