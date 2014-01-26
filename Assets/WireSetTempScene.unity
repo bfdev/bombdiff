@@ -135,7 +135,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -150,7 +150,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 731398740}
   m_LocalRotation: {x: .491918027, y: 0, z: 0, w: .87064153}
-  m_LocalPosition: {x: 0, y: .503808975, z: -.388778925}
+  m_LocalPosition: {x: 0, y: 1.3352859, z: -.698486269}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
