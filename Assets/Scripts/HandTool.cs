@@ -14,8 +14,7 @@ public class HandTool : MonoBehaviour {
 		
 	}
 
-	public void Activate() {
-
+	public virtual void Activate() {
 	}
 
 	public static HandTool GetTool(int tool) {

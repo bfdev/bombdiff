@@ -14,18 +14,24 @@ public class Wirecutters : HandTool {
 		
 	}
 
-	void Activate() {
-		m_wire.Snip();
+	public override void Activate() {
+		if (m_wire) {
+			m_wire.Snip ();
+		}
 	}
 
 	void OnTriggerEnter (Collider col){
-		if (col.tag == "Wire") {
+
+		if (col.tag == "Wire" && !m_wire) {
 			m_wire = col.gameObject.GetComponent<SnippableWire>();
+			m_wire.setIsHighlighted(true);
 		}
 	}
 	
 	void OnTriggerExit (Collider col) {
-		if (col.gameObject == m_wire) {
+		if (m_wire && col.gameObject == m_wire.gameObject) {
+
+			m_wire.setIsHighlighted(false);
 			m_wire = null;
 		}
 	}
