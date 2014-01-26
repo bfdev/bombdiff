@@ -7,13 +7,13 @@ public class SnippableWire : MonoBehaviour
 	public Material blackMaterial;
 	public Material blueMaterial;
 	public Material redMaterial;
-	public Material whiteMaterial;
+	public Material geenMaterial;
 	public Material yellowMaterial;
 
 	public Material blackMaterialHighlight;
 	public Material blueMaterialHighlight;
 	public Material redMaterialHighlight;
-	public Material whiteMaterialHighlight;
+	public Material geenMaterialHighlight;
 	public Material yellowMaterialHighlight;
 
 	public GameObject snippedWire;
@@ -62,8 +62,8 @@ public class SnippableWire : MonoBehaviour
 				case WireColour.Red:
 					newMaterial = redMaterialHighlight;
 					break;
-				case WireColour.White:
-					newMaterial = whiteMaterialHighlight;
+				case WireColour.Green:
+					newMaterial = geenMaterialHighlight;
 					break;
 				case WireColour.Yellow:
 				default:
@@ -84,8 +84,8 @@ public class SnippableWire : MonoBehaviour
 				case WireColour.Red:
 					newMaterial = redMaterial;
 					break;
-				case WireColour.White:
-					newMaterial = whiteMaterial;
+				case WireColour.Green:
+					newMaterial = geenMaterial;
 					break;
 				case WireColour.Yellow:
 				default:
