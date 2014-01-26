@@ -17,9 +17,16 @@ public class SnippableWire : MonoBehaviour
 	public Material whiteMaterial;
 	public Material yellowMaterial;
 
+	public Material blackMaterialHighlight;
+	public Material blueMaterialHighlight;
+	public Material redMaterialHighlight;
+	public Material whiteMaterialHighlight;
+	public Material yellowMaterialHighlight;
+
 	public GameObject snippedWire;
 	public GameObject nonSnippedWire;
 
+	protected bool _isHighlighted = false;
 	protected WireColour _colour;
 
 	// Use this for initialization
@@ -43,24 +50,49 @@ public class SnippableWire : MonoBehaviour
 	public void setColour(WireColour newColour)
 	{
 		Material newMaterial;
-		switch (newColour)
+		if (_isHighlighted)
 		{
-			case WireColour.Black:
-				newMaterial = blackMaterial;
-				break;
-			case WireColour.Blue:
-				newMaterial = blueMaterial;
-				break;
-			case WireColour.Red:
-				newMaterial = redMaterial;
-				break;
-			case WireColour.White:
-				newMaterial = whiteMaterial;
-				break;
-			case WireColour.Yellow:
-			default:
-				newMaterial = yellowMaterial;
-				break;
+			switch (newColour)
+			{
+				case WireColour.Black:
+					newMaterial = blackMaterialHighlight;
+					break;
+				case WireColour.Blue:
+					newMaterial = blueMaterialHighlight;
+					break;
+				case WireColour.Red:
+					newMaterial = redMaterialHighlight;
+					break;
+				case WireColour.White:
+					newMaterial = whiteMaterialHighlight;
+					break;
+				case WireColour.Yellow:
+				default:
+					newMaterial = yellowMaterialHighlight;
+					break;
+			}
+		}
+		else
+		{
+			switch (newColour)
+			{
+				case WireColour.Black:
+					newMaterial = blackMaterial;
+					break;
+				case WireColour.Blue:
+					newMaterial = blueMaterial;
+					break;
+				case WireColour.Red:
+					newMaterial = redMaterial;
+					break;
+				case WireColour.White:
+					newMaterial = whiteMaterial;
+					break;
+				case WireColour.Yellow:
+				default:
+					newMaterial = yellowMaterial;
+					break;
+			}
 		}
 		foreach (MeshRenderer meshRenderer in this.gameObject.GetComponentsInChildren<MeshRenderer>())
 		{
@@ -84,4 +116,23 @@ public class SnippableWire : MonoBehaviour
 	{
 		return nonSnippedWire.activeInHierarchy;
 	}
+
+	public void setIsHighlighted(bool value)
+	{
+		_isHighlighted = value;
+		// reset material to use the highlighted material or non-highlighted
+		setColour(_colour);
+	}
+
+	// For testing highlight...
+	//void OnMouseEnter()
+	//{
+	//	setIsHighlighted(true);
+	//}
+
+	//void OnMouseExit()
+	//{
+	//	setIsHighlighted(false);
+	//}
+
 }
