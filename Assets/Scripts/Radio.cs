@@ -32,8 +32,7 @@ public class Radio : MonoBehaviour {
 		float timeRemaining = SceneManager.Instance.Bomb.GetTimer().timeRemaining;
 		float timeTotal = SceneManager.Instance.SecondsToSolve;
 		int index = (int)(music.Length - (timeRemaining / timeTotal * music.Length));
-		if (index < 0)
-			index = 0;
+		index = Mathf.Clamp(index, 0, music.Length - 1);
 		return music [index];
 	}
 }

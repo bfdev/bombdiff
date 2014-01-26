@@ -25,6 +25,11 @@ public class SixenseHandController : SixenseObjectController
 		m_toolNum = 0;
 		m_toolPressed = false;
 		m_isActivating = false;
+
+		if (Hand == SixenseHands.RIGHT)
+		{
+			NextTool();
+		}
 		
 		base.Start();
 	}
@@ -67,55 +72,73 @@ public class SixenseHandController : SixenseObjectController
 	// Updates the animated object from controller input.
 	protected void UpdateAnimationInput( SixenseInput.Controller controller)
 	{
-		// Point
-		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.ONE) : controller.GetButton(SixenseButtons.TWO) )
+		// Tools can only be used by the right hand
+		if (Hand == SixenseHands.RIGHT)
 		{
-			if(!m_toolPressed) {
-				NextTool();
-				Debug.Log ("What");
-			}
+			if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.ONE) : controller.GetButton(SixenseButtons.TWO) )
+			{
+				if(!m_toolPressed) {
+					NextTool();
+					Debug.Log ("What");
+				}
 
-			m_toolPressed = true;
-			m_animator.SetBool( "Point", true );
+				m_toolPressed = true;
+				m_animator.SetBool( "Point", true );
+			}
+			else
+			{
+				m_toolPressed = false;
+				m_animator.SetBool( "Point", false );
+			}
 		}
 		else
 		{
-			m_toolPressed = false;
-			m_animator.SetBool( "Point", false );
-		}
-		
-		// Grip Ball
-		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.TWO) : controller.GetButton(SixenseButtons.ONE)  )
-		{
-			m_animator.SetBool( "GripBall", true );
-		}
-		else
-		{
-			m_animator.SetBool( "GripBall", false );
-		}
-				
-		// Hold Book
-		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.THREE) : controller.GetButton(SixenseButtons.FOUR) )
-		{
-			m_animator.SetBool( "HoldBook", true );
-		}
-		else
-		{
-			m_animator.SetBool( "HoldBook", false );
+			// Grip Ball
+			if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.TWO) : controller.GetButton(SixenseButtons.ONE)  )
+			{
+				m_animator.SetBool( "GripBall", true );
+			}
+			else
+			{
+				m_animator.SetBool( "GripBall", false );
+			}
+					
+			// Hold Book
+			if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.THREE) : controller.GetButton(SixenseButtons.FOUR) )
+			{
+				m_animator.SetBool( "HoldBook", true );
+			}
+			else
+			{
+				m_animator.SetBool( "HoldBook", false );
+			}
 		}
 				
 		// Fist
 		float fTriggerVal = controller.Trigger;
 		if (fTriggerVal > 0.01f) {
-			if(m_tool && !m_isActivating) {
-				m_tool.Activate();
-				m_isActivating = true;
-			} else {
+			if (Hand == SixenseHands.RIGHT)
+			{
+				if(m_tool && !m_isActivating) {
+					m_tool.Activate();
+					m_isActivating = true;
+				} 
+			}
+			else 
+			{
 				m_pickupZone.Grab();
 			}
-		} else {
-			m_isActivating = false;
-			m_pickupZone.Drop();
+		} 
+		else 
+		{
+			if (Hand == SixenseHands.RIGHT)
+			{
+				m_isActivating = false;
+			}
+			else
+			{
+				m_pickupZone.Drop();
+			}
 		}
 
 		fTriggerVal = Mathf.Lerp( m_fLastTriggerVal, fTriggerVal, 0.1f );
@@ -147,7 +170,7 @@ public class SixenseHandController : SixenseObjectController
 	}
 
 	public void NextTool() {
-		if (m_toolNum > HandTool.GetNumTools ()) {
+		if (m_toolNum >= HandTool.GetNumTools ()) {
 			m_toolNum = 0;
 		}
 		if (m_tool) {

@@ -141,6 +141,11 @@ public class Bomb : MonoBehaviour
 			{
 				statusLight.SetInactive();
 			}
+
+			foreach(var hand in GameObject.FindObjectsOfType(typeof(SixenseHandController)))
+			{
+				((SixenseHandController)hand).gameObject.SetActive(false);
+			}
 		}
 	}
 
